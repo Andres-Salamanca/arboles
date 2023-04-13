@@ -152,8 +152,16 @@ int ArbolGeneral<T>::altura(NodoGeneral<T>* nodo){
 }
 
 template<class T>
-unsigned int ArbolGeneral<T>::tamano(){
-  
+unsigned int ArbolGeneral<T>::tamano(NodoGeneral<T>* nodo){
+  if (nodo == NULL) {
+    return 0;
+  }
+  unsigned int count = 1;
+  typename std::list< NodoGeneral<T>* >::iterator it;
+  for(it = nodo->desc.begin(); it != nodo->desc.end(); it++){
+    count += tamano(*it);
+  }
+  return count;
 }
 
 template<class T>
